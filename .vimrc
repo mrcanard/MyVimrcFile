@@ -32,6 +32,12 @@ Plugin 'tpope/vim-fugitive'
 " You Complete Me
 Plugin 'ycm-core/YouCompleteMe'
 
+" Better folding
+Plugin 'tmhedberg/SimpylFold'
+
+" Personal wiki with vim
+Plugin 'vimwiki/vimwiki'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -105,3 +111,22 @@ set foldmethod=indent
 set foldlevel=99
 
 " Enable folding with the spacebar
+nnoremap <space> za
+
+" with docstrings commentaries in fold (needs SimplyFold)
+let g:SimplyFold_docstring_preview=1
+
+" Conformation to PEP 8
+au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+
+" Wrap wiki files
+au BufNewFile,BufRead *.wiki set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+
+" for other kinds
+au BufNewFile,BufRead *.js set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.html set tabstop=2 softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.css set tabstop=2 softtabstop=2 shiftwidth=2
+
+" Folding avec vimwiki
+let g:vimwiki_folding = 'syntax'
+

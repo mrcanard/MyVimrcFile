@@ -38,6 +38,31 @@ Plugin 'tmhedberg/SimpylFold'
 " Personal wiki with vim
 Plugin 'vimwiki/vimwiki'
 
+" Better indentation
+Plugin 'vim-scripts/indentpython.vim'
+
+" Highlight syntax
+Plugin 'vim-syntastic/syntastic'
+
+" PEP 8 checking
+Plugin 'nvie/vim-flake8'
+
+" Coloring
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+
+" File browsing
+Plugin 'scrooloose/nerdtree'
+
+" Super Search
+Plugin 'kien/ctrlp.vim'
+
+" Powerline !!!
+" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+" REPL
+Plugin 'sillybun/vim-repl'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -94,6 +119,9 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" Line numbering
+set nu
+
 " split navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -103,8 +131,15 @@ nnoremap <C-H> <C-W><C-H>
 " UTF-8
 set encoding=utf-8
 
-" Desert
-colorscheme desert
+" Coloring
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
+
+" colorscheme desert
 
 " Enable folding
 set foldmethod=indent
@@ -129,4 +164,21 @@ au BufNewFile,BufRead *.css set tabstop=2 softtabstop=2 shiftwidth=2
 
 " Folding avec vimwiki
 let g:vimwiki_folding = 'syntax'
+
+"python with virtualenv support
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
+
+" Pretty code
+let python_highlight_all=1
+syntax on
+
+" Ignore some files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
